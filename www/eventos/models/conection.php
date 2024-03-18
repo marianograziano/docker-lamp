@@ -3,8 +3,8 @@
 class Conexion{
     static public function conectar(){
         try {
-            $conn = new PDO("mysql:host=localhost;dbname=market-pos", "root", "",array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
-            return $conn; 
+            $conn = mysqli_connect('db', 'root', 'test', "market-pos");
+            return $conn;
         }
         catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
