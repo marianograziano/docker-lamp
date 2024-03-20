@@ -8,4 +8,22 @@ class DashboardTrainController{
         return $datos; 
         //return $respuesta;
     }
+    static public function ctrGetVentasMesActual(){
+        $ventasMesActual = DashboardTrainModel::mdlGetVentasMesActual();
+
+        return $ventasMesActual;
+    }
+
+
+    static public function ctrGetProductosMasVendidos(){
+        $productosMasVendidos = DashboardTrainModel::mdlgetProductosMasVendidos();
+
+        return $productosMasVendidos;
+    }
+
+    static public function ctrGetProductosMenosStock() {
+        $productosMenosStock = DashboardTrainModel::mdlGetProductosMenosStocks();
+
+        return $productosMenosStock;
+    }
 }
