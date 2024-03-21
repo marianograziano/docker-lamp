@@ -49,10 +49,9 @@
         <!-- fila para gif -->
         <div class="row mx-0">
             <div class="col-lg-12 mx-0 text-center">
-                
-                    <img src="views/assets/images/loading.gif"  id="img_carga" style="display:none;">;
 
-                
+                <img src="views/assets/images/loading.gif" id="img_carga" style="display:none;">
+
             </div>
         </div>
     </div>
@@ -60,50 +59,132 @@
 
 </div>
 
-<script>
+<!-- <script>
     $(document).ready(function () {
+        console.log("Documento listo");
+
         $('#formCargaMasivaProductos').submit(function (e) {
             e.preventDefault();
-
-            // ******
-            // VALIDAR QUE SE SELECCIONE UN ARCHIVO 
-            // *****
+            console.log("Formulario enviado");
 
             if ($("#fileProductos").get(0).files.length == 0) {
-                Swal.fire({ // sweet alert
+                console.log("No se seleccionó archivo");
+                Swal.fire({
                     position: 'center',
                     icon: 'warning',
                     title: 'Debe seleccionar un archivo',
                     showConfirmButton: false,
                     timer: 2500
-                })
+                });
             } else {
+                console.log("Archivo seleccionado");
                 var extensiones_permitidas = [".xls", ".xlsx"];
-                var input_file_productos = $("#fileProductos")
+                var input_file_productos = $("#fileProductos");
                 var exp_reg = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + extensiones_permitidas.join('|') + ")$");
-                console.log(exp_reg);
-                console.log(input_file_productos.val());
+                console.log("Expresión Regular: ", exp_reg);
+                console.log("Valor input_file_productos: ", input_file_productos.val());
 
                 if (!exp_reg.test(input_file_productos.val().toLowerCase())) {
-                    Swal.fire({ // sweet alert
+                    console.log("Extensión de archivo no permitida");
+                    Swal.fire({
                         position: 'center',
                         icon: 'warning',
                         title: 'El archivo seleccionado no es válido',
                         showConfirmButton: false,
                         timer: 2500
-                    })
-                    return false; 
+                    });
+                    return false;
                 }
 
-                var datos = new FormData($(formCargaMasivaProductos)[0]);
+                var datos = new FormData($(this)[0]);
+                console.log("Datos del formulario preparados");
 
-            $("#btnCargar").prop("disabled",true);
-            $("#img_carga").attr("style","display:block");
-            $("#img_carga").attr("style","height: 200px; width: 100px;");
+                $("#btnCargar").prop("disabled", true);
+                $("#img_carga").css("display", "block");
+                console.log("Botón cargar deshabilitado y GIF de carga visible");
+
+                $.ajax({
+                    url: "ajax/productos.ajax.php",
+                    type: "POST",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        console.log("Respuesta AJAX recibida: ", data);
+                        console.log("Respuesta AJAX recibida typo: ", typeof (data));
+
+
+                        // Utilizamos una expresión regular para encontrar dígitos entre paréntesis
+                        let resultado = data.match(/\((\d+)\)/);
+
+                        // resultado es un arreglo donde la primera coincidencia está en el índice 1
+                        let cant_categorias = resultado ? parseInt(resultado[1], 10) : null;
 
 
 
+
+                        if (cant_categorias > 0) {
+                            console.log("Entro");
+                        } else {
+                            console.log("No entro");
+                        }
+                        if (cant_categorias > 0) {
+                            console.log("Data" + data);
+                            console.log("Carga exitosa");
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Carga Exitosa',
+                                showConfirmButton: false,
+                                timer: 2500,
+                            });
+
+                            $("#btnCargar").prop("disabled", false);
+                            $("#img_carga").css("display", "none");
+                        } else {
+                            console.log("Data" + data);
+                            console.log("Error en la carga");
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'Error al cargar el archivo',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                            $("#btnCargar").prop("disabled", false);
+                            $("#img_carga").css("display", "none");
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log("Error en AJAX:", textStatus, errorThrown);
+                        $("#btnCargar").prop("disabled", false);
+                        $("#img_carga").css("display", "none");
+                    }
+                });
             }
         });
     });
-</script>
+</script> -->
+<script>
+// Espera a que el documento HTML se haya cargado completamente antes de ejecutar la función.
+$(document).ready(function() {
+    // Selecciona el formulario con el ID 'formCargaMasivaProductos' y establece un controlador de evento para el evento 'submit'.
+    $("#formCargaMasivaProductos").on("submit", function (e) {
+        // Previene la acción por defecto del evento, en este caso, la acción de enviar el formulario.
+        e.preventDefault();   
+          // Validar que se seleccione un archivo 
+        if($("#fileProductos").get(0).files.length == 0){
+            Swal.fire({
+                position:'center',
+                icon:'warning',
+                title:'Debe seleccionar un archivo',
+                showConfirmButton: false,
+                timer: 2500
+            })
+        }
+      
+
+        
+    })
+});

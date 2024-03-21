@@ -1,7 +1,5 @@
 <div>
 
-
-
     <div class="content-header">
         <div class="row mb-2">
             <div class="col-sm-6">
@@ -213,7 +211,7 @@
         method: 'POST',
         dataType: "json",
         success: function (response) {
-        //    console.log("response", response);
+       //   console.log("response cuadraditos ", response);
             $("#totalProductos").html(response[0].totalProductos);
             $('#totalCompras').html('$ ' + response[0].totalCompras.replace(/\d(?=( \d{3})+\.)/g, "$&,"));
             $('#totalVentas').html('$ ' + response[0].totalVentas.replace(/\d(?=( \d{3})+\.)/g, "$&,"));
@@ -229,7 +227,7 @@
             method: 'POST',
             dataType: "json",
             success: function (response) {
-              //  console.log("response", response);
+               // console.log("response", response);
                 $("#totalProductos").html(response[0].totalProductos);
                 $('#totalCompras').html('$ ' + response[0].totalCompras.replace(/\d(?=( \d{3})+\.)/g, "$&,"));
                 $('#totalVentas').html('$ ' + response[0].totalVentas.replace(/\d(?=( \d{3})+\.)/g, "$&,"));
@@ -339,7 +337,7 @@
         },
         dataType: "json",
         success: function (response) {
-            console.log("response", response);
+          //  console.log("response mas vendidos", response);
             for (let i = 0; i < response.length; i++) {
                 filas = '<tr>' + 
             '<td>' + response[i]['codigo_producto'] + '</td>' +
@@ -361,7 +359,7 @@ $.ajax({
         },
         dataType: "json",
         success: function (response) {
-            console.log("response", response);
+         //   console.log("response menos stock", response);
             for (let i = 0; i < response.length; i++) {
                 filas = '<tr>' + 
             '<td>' + response[i]['codigo_producto'] + '</td>' +
