@@ -187,19 +187,28 @@
                 var extensiones_permitidas = [".xls", ".xlsx"];
                 var input_file_productos = $("#fileProductos");
                 var exp_reg = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + extensiones_permitidas.join('|') + ")$");
-               
-                if(!exp_reg.test(input_file_productos.val().toLowerCase())){
+
+                if (!exp_reg.test(input_file_productos.val().toLowerCase())) {
                     Swal.fire({
                         position: 'center',
                         icon: 'warning',
-                        title: 'El archivo seleccionado no es válido',
+                        title: 'El archivo seleccionado debe ser xls o xlsx',
                         showConfirmButton: false,
                         timer: 2500
                     });
                     return false;
                 }
 
-                
+                // Crear un objeto FormData para enviar los datos del formulario
+
+                var datos = new FormData($(formCargaMasivaProductos)[0]);
+
+                $('#btnCargar').prop('disabled', true);
+                $('#img_carga').css('display', 'block');
+                $('#img_carga').css('style', 'height:200px');
+                $('#img_carga').css('style', 'height:200px');
+
+
             }
 
 
