@@ -15,7 +15,7 @@ static public function mdlCargaMasivaProductos($fileProductos){
     $numeroFilasCategorias = $hojaCategorias->getHighestDataRow();
 
 
-    var_dump($numeroFilasCategorias);
+
     
     $categoriasregistradas = 0;
     for ($i=2; $i <= $numeroFilasCategorias ; $i++) { 
@@ -48,7 +48,7 @@ static public function mdlCargaMasivaProductos($fileProductos){
             }            
                
         }
-        //echo "Pre return categorias " . $categoriasregistradas;
+        $categoriasregistradas;
         return $categoriasregistradas;     
     }
 

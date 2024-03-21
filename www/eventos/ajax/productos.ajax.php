@@ -9,7 +9,7 @@ class ajaxProductos{
     public function ajaxCargaMasivaProductos(){
             
         $respuesta = ProductsController::ctrCargaMasivaProductos($this->fileProductos);
-        echo "respuesta -> ". $respuesta; 
+
         echo json_encode($respuesta);
     }
 }
@@ -18,5 +18,7 @@ if (isset($_FILES["fileProductos"])) {
     $archivos_producto = new ajaxProductos();
     $archivos_producto -> fileProductos = $_FILES["fileProductos"];
     $archivos_producto -> ajaxCargaMasivaProductos();
+    
+    
     
 }

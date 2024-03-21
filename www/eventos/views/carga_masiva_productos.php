@@ -204,15 +204,48 @@
                 var datos = new FormData($(formCargaMasivaProductos)[0]);
 
                 $('#btnCargar').prop('disabled', true);
-                $('#img_carga').css('display', 'block');
-                $('#img_carga').css('style', 'height:200px');
-                $('#img_carga').css('style', 'height:200px');
+                $('#img_carga').attr('style', 'display:block');
+                $('#img_carga').attr('style','height:200px');
+                $('#img_carga').attr('style','width:200px');
+
+            
+
+            // ajax para enviar el archivo al servidor
+            $.ajax({
+                url: "ajax/productos.ajax.php",
+                type: "POST",
+                data: datos,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (respuesta) {
+                    console.log("-----");
+                    var cant_categorias = parseInt(respuesta);
 
 
-            }
+                    if(respuesta > 0) {
+
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Se registraron ' + cant_categorias + ' categorías',
+                            showConfirmButton: false,
+                            timer: 2500
+                        })
+                    }
+
+                    $("#btnCargar").prop("disabled", false);
+                    $("#img_carga").attr("style", "display:none");
 
 
 
 
+
+
+                       }           })
+
+                }
+            })
         })
-    });
+    
+        ;
