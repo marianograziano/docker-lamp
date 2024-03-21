@@ -167,24 +167,43 @@
     });
 </script> -->
 <script>
-// Espera a que el documento HTML se haya cargado completamente antes de ejecutar la función.
-$(document).ready(function() {
-    // Selecciona el formulario con el ID 'formCargaMasivaProductos' y establece un controlador de evento para el evento 'submit'.
-    $("#formCargaMasivaProductos").on("submit", function (e) {
-        // Previene la acción por defecto del evento, en este caso, la acción de enviar el formulario.
-        e.preventDefault();   
-          // Validar que se seleccione un archivo 
-        if($("#fileProductos").get(0).files.length == 0){
-            Swal.fire({
-                position:'center',
-                icon:'warning',
-                title:'Debe seleccionar un archivo',
-                showConfirmButton: false,
-                timer: 2500
-            })
-        }
-      
+    // Espera a que el documento HTML se haya cargado completamente antes de ejecutar la función.
+    $(document).ready(function () {
+        // Selecciona el formulario con el ID 'formCargaMasivaProductos' y establece un controlador de evento para el evento 'submit'.
+        $("#formCargaMasivaProductos").on("submit", function (e) {
+            // Previene la acción por defecto del evento, en este caso, la acción de enviar el formulario.
+            e.preventDefault();
+            // Validar que se seleccione un archivo 
+            if ($("#fileProductos").get(0).files.length == 0) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Debe seleccionar un archivo',
+                    showConfirmButton: false,
+                    timer: 2500
+                })
+            } else {
+                // validar que se seleccione un archivo con extensión .xls o .xlsx
+                var extensiones_permitidas = [".xls", ".xlsx"];
+                var input_file_productos = $("#fileProductos");
+                var exp_reg = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + extensiones_permitidas.join('|') + ")$");
+               
+                if(!exp_reg.test(input_file_productos.val().toLowerCase())){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'El archivo seleccionado no es válido',
+                        showConfirmButton: false,
+                        timer: 2500
+                    });
+                    return false;
+                }
 
-        
-    })
-});
+                
+            }
+
+
+
+
+        })
+    });
