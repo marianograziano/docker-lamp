@@ -12,7 +12,17 @@ class ajaxProductos{
 
         echo json_encode($respuesta);
     }
+
+    public function ajaxListarProductos() {
+        $productos = ProductsController::ctrListarProductos();
+        echo json_encode($productos);
+    }
 }
+
+if (isset($_POST["accion"]) && $_POST["accion"] == 1) {
+    $productos = new ajaxProductos(); 
+    $productos -> ajaxListarProductos(); 
+} else 
 
 if (isset($_FILES["fileProductos"])) {
     $archivos_producto = new ajaxProductos();
@@ -22,3 +32,4 @@ if (isset($_FILES["fileProductos"])) {
     
     
 }
+

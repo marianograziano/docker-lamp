@@ -7,4 +7,9 @@ class ProductsController{
         return $respuesta;
     }
 
+    static public function ctrListarProductos(){
+        $respuesta = ProductsModel::mdlListarProductos();
+        return $respuesta;
+    }
+
 }

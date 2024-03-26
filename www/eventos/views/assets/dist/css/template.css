@@ -1,0 +1,26 @@
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgba(0, 0, 0, .9);
+    background: lightskyblue;
+    font-weight: bold;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+    white-space: nowrap !important;
+    font-size: 15px;
+}
+
+#tbl_productos thead th{
+    white-space: nowrap !important;
+}
+
+
+.addNewRecord, .buttons-excel, .buttons-print, .buttons-collection  {
+    background-color: lightskyblue !important;
+    color: #fff;
+}
+
+
+.dt-button{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}   

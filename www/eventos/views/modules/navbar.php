@@ -10,6 +10,10 @@
         <li class="nav-item d-none d-sm-inline-block">
         <a style="cursor: pointer;" class="nav-link" onclick="LoadTemplate('views/carga_masiva_productos.php', 'content-wrapper')">Carga Masiva</a>
         </li>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+        <a style="cursor: pointer;" class="nav-link" onclick="LoadTemplate('views/productos.php', 'content-wrapper')">Productos</a>
+        </li>
         <!-- <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
         </li> -->
