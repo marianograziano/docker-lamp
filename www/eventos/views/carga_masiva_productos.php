@@ -205,47 +205,63 @@
 
                 $('#btnCargar').prop('disabled', true);
                 $('#img_carga').attr('style', 'display:block');
-                $('#img_carga').attr('style','height:200px');
-                $('#img_carga').attr('style','width:200px');
-
-            
-
-            // ajax para enviar el archivo al servidor
-            $.ajax({
-                url: "ajax/productos.ajax.php",
-                type: "POST",
-                data: datos,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (respuesta) {
-                    console.log("-----");
-                    var cant_categorias = parseInt(respuesta);
+                $('#img_carga').attr('style', 'height:200px');
+                $('#img_carga').attr('style', 'width:200px');
 
 
-                    if(respuesta > 0) {
+                // ajax para enviar el archivo al servidor
+                $.ajax({
+                    url: "ajax/productos.ajax.php",
+                    type: "POST",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function (respuesta) {
+                        console.log("Respuesta ", respuesta);
+                        console.log("Total categorias ", respuesta['categoriasRegistradas']);
+                        console.log("Total productos ", respuesta['productosRegistrados']);
 
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: 'Se registraron ' + cant_categorias + ' categorías',
-                            showConfirmButton: false,
-                            timer: 2500
-                        })
+                        $("#img_carga").attr("style", "display:none");
+
+
+
+                        if ((respuesta['categoriasRegistradas'] > 0) && (respuesta['productosRegistrados'] > 0)) {
+
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Se registraron ' + respuesta['categoriasRegistradas'] + ' categorias y ' + respuesta['productosRegistrados'] + ' productos',
+                                showConfirmButton: false,
+                                timer: 2500
+                            })
+                            $("#btnCargar").prop("disabled", false);
+                            $("#img_carga").attr("style", "display:none");
+                            
+                        } else {
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'se presento un error al momento',
+                                showConfirmButton: false,
+                                timer: 2500
+                            })
+                            $("#btnCargar").prop("disabled", false);
+                        }
+
+
+
+
+
+
+
+
                     }
+                })
 
-                    $("#btnCargar").prop("disabled", false);
-                    $("#img_carga").attr("style", "display:none");
-
-
-
-
-
-
-                       }           })
-
-                }
-            })
+            }
         })
-    
-        ;
+    })
+
+</script>

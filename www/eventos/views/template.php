@@ -54,10 +54,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-      <!-- Content Header (Page header) -->
-      <?php include "views/dashboard-train.php"; ?>
-    </div>
-    <!-- /.content-wrapper -->
+   <!-- Content Header (Page header) -->
+  <?php include "views/carga_masiva_productos.php"; ?>
+  </div>
+  <!-- /.content-wrapper -->
 
 
 
