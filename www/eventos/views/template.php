@@ -19,6 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="views/assets/dist/css/template.css">
   <link rel="stylesheet" href="views/assets/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="views/assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 <!-- Datatables -->
@@ -31,7 +32,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="views/assets/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="views/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE App -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- AdminLTE App -->
   <script src="views/assets/dist/js/adminlte.min.js"></script>
   <!-- Chart -->
   <script src="views/assets/plugins/chart.js/Chart.min.js"></script>
