@@ -27,7 +27,7 @@
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="btnLimpiarBusqueda">
+                            <button type="button" class="btn btn-tool text-danger   " id="btnLimpiarBusqueda">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div> <!-- ./ end card-tools -->
@@ -163,6 +163,14 @@
                     visible: false,
                 },
                 {
+                    targets: 9,
+                    createdCell: function(td, cellData, rowData, row, col) {
+                        if(parseFloat(rowData[9]) <= parseFloat(rowData[10])){
+                            $(td).parent().css('background',"#FF5733")
+                        }
+                    }
+                },
+                {
                     targets: 11,
                     visible: false,
                 },
@@ -241,7 +249,11 @@
             }
         )
 
+    $("#btnLimpiarBusqueda").on("click", function () {
+        $("#iptCodigoBarras, #iptCategoria, #iptProducto, #iptPrecioVentaDesde, #iptPrecioVentaHasta").val("");
+        table.search("").columns().search("").draw();
 
+    })
 
     }
     )
