@@ -102,6 +102,152 @@
 
 </div>
 
+<div class="modal fade" id="mdlGestionarProducto" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-gray py-1 align-items-center">
+                <h5 class="modal-title">Gestionar Producto</h5>
+                <button type="button" class="btn btn-outline-primary text-white border-0 fs-5" data-dismiss="modal" id="btnCerrarModal">
+                    <i class="far fa-times-circle"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <!-- Columna para registro de codigo de barras -->
+                    <div class="col-lg-6">
+                        <div class="form-group mb-2">
+                            <label class="" for="iptCodigoReg">
+                                <span class="small">Codigo de barras</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="" id="" class="form-control form-control-sm" name="iptCodigoReg"
+                                id="iptCodigoReg" placeholder="Codigo de barras" required>
+                            <span id="validate_codigo" class="text-danger smal fst-italic" style="display: none;">Debe
+                                ingresar el codigo de barras</span>
+                        </div>
+                    </div>
+                    <!-- Columna para registro de categoria de producto -->
+                    <div class="col-lg-6">
+                        <div class="form-group mb-2">
+                            <label class="" for="selCategoriaReg">
+                                <i class="fas fa-dumpster fs-6"></i>
+                                <span class="small">Categoria</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select form-select-sm" arial-label=".form-select-sm example"
+                                id="selCategoriaReg">
+                                <option value="0">Seleccione una categoria</option>
+                                <span id="validate_codigo" class="text-danger smal fst-italic"
+                                    style="display: none;">Debe
+                                    ingresar la categoria</span>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Columna para registro de Descripcion -->
+
+                    <div class="col-12 col-lg-12">
+                        <div class="form-group mb-2">
+                            <label class="" for="iptDescripcionReg">
+                                <i class="fas fa-file-signature fs-6"></i>
+                                <span class="small">Descripción</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" name="iptDescripcionReg"
+                                id="iptDescripcionReg" placeholder="Descripción" required>
+                        </div>
+                    </div>
+
+                    <!-- Columna para registro de precio de compra -->
+                    <div class="col-lg-4">
+                        <div class="form-group mb-2">
+                            <label class="" for="iptPrecioCompraReg">
+                                <i class="fas fa-money-bill-wave fs-6"></i>
+                                <span class="small">Precio de Compra</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="number" name="" id="" class="form-control form-control-sm"
+                                name="iptPrecioCompraReg" id="iptPrecioCompraReg" placeholder="Precio de Compra"
+                                required>
+                            <span id="validate_precio_compra" class="text-danger smal fst-italic"
+                                style="display: none;">Debe
+                                ingresar el precio de compra</span>
+                        </div>
+                    </div>
+
+                    <!-- Columna para registro de precio de venta -->
+                    <div class="col-lg-4">
+                        <div class="form-group mb-2">
+                            <label class="" for="iptPrecioVentaReg">
+                                <i class="fas fa-money-bill-wave fs-6"></i>
+                                <span class="small">Precio de Venta</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="number" name="" id="" class="form-control form-control-sm"
+                                name="iptPrecioVentaReg" id="iptPrecioVentaReg" placeholder="Precio de Venta" required>
+                            <span id="validate_precio_venta" class="text-danger smal fst-italic"
+                                style="display: none;">Debe
+                                ingresar el precio de venta</span>
+                        </div>
+                    </div>
+
+                    <!-- Columna para el calculo de Utilidad-->
+                    <div class="col-lg-4">
+                        <div class="form-group mb-2">
+                            <label class="" for="iptUtilidadReg">
+                                <i class="fas fa-money-bill-wave fs-6"></i>
+                                <span class="small">Utilidad</span>
+
+                            </label>
+                            <input type="number" class="form-control form-control-sm" name="iptUtilidadReg"
+                                id="iptUtilidadReg" placeholder="Utilidad" disabled>
+
+                        </div>
+                    </div>
+
+                    <!-- Columna para el ingreso de Stock-->
+                    <div class="col-lg-6">
+                        <div class="form-group mb-2">
+                            <label class="" for="iptStockReg">
+                                <i class="fas fa-plus-circle fs-6"></i>
+                                <span class="small">Stock</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="number" class="form-control form-control-sm" name="iptStockReg"
+                                id="iptStockReg" placeholder="Stock" required>
+                            <span id="validate_stock" class="text-danger smal fst-italic" style="display: none;">Debe
+                                ingresar la cantidad de stock </span>
+                        </div>
+                    </div>
+                    <!-- Columna para el ingreso de Stock Minimo-->
+                    <div class="col-lg-6">
+                        <div class="form-group mb-2">
+                            <label class="" for="iptMinimoStockReg">
+                                <i class="fas fa-minus-circle fs-6"></i>
+                                <span class="small">Minimo Stock</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="number" class="form-control form-control-sm" name="iptMinimoStockReg"
+                                id="iptMinimoStockReg" placeholder="Minimo Stock" required>
+                            <span id="validate_min_stock" class="text-danger smal fst-italic"
+                                style="display: none;">Debe
+                                ingresar la cantidad minima de stock </span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-3 mx-2" style="width:170px;"
+                    id="btnGuardarProducto" onclick="formSubmitClick()">Guardar</button>
+
+                    <button type="button" class="btn btn-danger mt-3 mx-2" style="width:170px;"
+                        data-dismiss="modal">Cancelar</button>
+ 
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <script>
 
@@ -128,7 +274,7 @@
                     text: 'Agregar Producto',
                     className: 'addNewRecord',
                     action: function (e, dt, node, config) {
-                        alert('Agregar Producto');
+                        $("#mdlGestionarProducto").modal('show');
                     }
                 },
                 'excel', 'print', 'pageLength'
@@ -164,9 +310,9 @@
                 },
                 {
                     targets: 9,
-                    createdCell: function(td, cellData, rowData, row, col) {
-                        if(parseFloat(rowData[9]) <= parseFloat(rowData[10])){
-                            $(td).parent().css('background',"#FF5733")
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        if (parseFloat(rowData[9]) <= parseFloat(rowData[10])) {
+                            $(td).parent().css('background', "#FF5733")
                         }
                     }
                 },
@@ -205,7 +351,7 @@
                 },
             ],
             language: {
-                url: '//cdn.datatables.net/plug-ins/2.0.3/i18n/es-ES.json',
+                url: 'https://cdn.datatables.net/plug-ins/2.0.3/i18n/es-ES.json',
             },
         });
 
@@ -245,15 +391,15 @@
                     return true;
                 }
 
-                return false; 
+                return false;
             }
         )
 
-    $("#btnLimpiarBusqueda").on("click", function () {
-        $("#iptCodigoBarras, #iptCategoria, #iptProducto, #iptPrecioVentaDesde, #iptPrecioVentaHasta").val("");
-        table.search("").columns().search("").draw();
+        $("#btnLimpiarBusqueda").on("click", function () {
+            $("#iptCodigoBarras, #iptCategoria, #iptProducto, #iptPrecioVentaDesde, #iptPrecioVentaHasta").val("");
+            table.search("").columns().search("").draw();
 
-    })
+        })
 
     }
     )
