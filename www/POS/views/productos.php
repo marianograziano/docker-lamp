@@ -107,7 +107,8 @@
         <div class="modal-content">
             <div class="modal-header bg-gray py-1 align-items-center">
                 <h5 class="modal-title">Gestionar Producto</h5>
-                <button type="button" class="btn btn-outline-primary text-white border-0 fs-5" data-dismiss="modal" id="btnCerrarModal">
+                <button type="button" class="btn btn-outline-primary text-white border-0 fs-5" data-dismiss="modal"
+                    id="btnCerrarModal">
                     <i class="far fa-times-circle"></i>
                 </button>
             </div>
@@ -120,7 +121,7 @@
                                 <span class="small">Codigo de barras</span>
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="text" name="" id="" class="form-control form-control-sm" name="iptCodigoReg"
+                            <input type="text" class="form-control form-control-sm" name="iptCodigoReg"
                                 id="iptCodigoReg" placeholder="Codigo de barras" required>
                             <span id="validate_codigo" class="text-danger smal fst-italic" style="display: none;">Debe
                                 ingresar el codigo de barras</span>
@@ -136,8 +137,8 @@
                             </label>
                             <select class="form-select form-select-sm" arial-label=".form-select-sm example"
                                 id="selCategoriaReg">
-                                <option value="0">Seleccione una categoria</option>
-                                <span id="validate_codigo" class="text-danger smal fst-italic"
+
+                                <span id="validate_categoria" class="text-danger smal fst-italic"
                                     style="display: none;">Debe
                                     ingresar la categoria</span>
                             </select>
@@ -155,6 +156,9 @@
                             </label>
                             <input type="text" class="form-control form-control-sm" name="iptDescripcionReg"
                                 id="iptDescripcionReg" placeholder="Descripción" required>
+                            <span id="validate_descripcion" class="text-danger smal fst-italic"
+                                style="display: none;">Debe
+                                ingresar la descripcion</span>
                         </div>
                     </div>
 
@@ -166,12 +170,13 @@
                                 <span class="small">Precio de Compra</span>
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="number" name="" id="" class="form-control form-control-sm"
+                            <input type="number" class="form-control form-control-sm"
                                 name="iptPrecioCompraReg" id="iptPrecioCompraReg" placeholder="Precio de Compra"
                                 required>
                             <span id="validate_precio_compra" class="text-danger smal fst-italic"
                                 style="display: none;">Debe
-                                ingresar el precio de compra</span>
+                                ingresar el precio de compra
+                            </span>
                         </div>
                     </div>
 
@@ -183,11 +188,12 @@
                                 <span class="small">Precio de Venta</span>
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="number" name="" id="" class="form-control form-control-sm"
-                                name="iptPrecioVentaReg" id="iptPrecioVentaReg" placeholder="Precio de Venta" required>
+                            <input type="number" class="form-control form-control-sm" name="iptPrecioVentaReg"
+                                id="iptPrecioVentaReg" placeholder="Precio de Venta" required>
                             <span id="validate_precio_venta" class="text-danger smal fst-italic"
                                 style="display: none;">Debe
-                                ingresar el precio de venta</span>
+                                ingresar el precio de venta
+                            </span>
                         </div>
                     </div>
 
@@ -234,13 +240,13 @@
                                 ingresar la cantidad minima de stock </span>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary mt-3 mx-2" style="width:170px;"
-                    id="btnGuardarProducto" onclick="formSubmitClick()">Guardar</button>
+                    <button type="button" class="btn btn-primary mt-3 mx-2" style="width:170px;" id="btnGuardarProducto"
+                        onclick="formSubmitClick()">Guardar</button>
 
-                    <button type="button" class="btn btn-danger mt-3 mx-2" style="width:170px;"
+                    <button type="button" class="btn btn-danger mt-3 mx-2" style="width:170px;" id="btnCancelarRegistro"
                         data-dismiss="modal">Cancelar</button>
- 
-                    
+
+
 
                 </div>
             </div>
@@ -251,19 +257,47 @@
 
 <script>
 
-    $.ajax({
-        url: "ajax/productos.ajax.php",
-        type: "POST",
-        data: { 'accion': 1 }, // 1 Listar producto
-        dataType: "json",
-        success: function (respuesta) {
-            console.log("respuesta", respuesta);
-        }
-    })
+var accion;
+var table;
+var Toast = Swal.mixin({
+     toast: true,
+     position: 'top',
+     showConfirmButton: false,
+     timer: 3000,
+})
 
 
     $(document).ready(function () {
-        var table;
+
+
+
+        $.ajax({
+            url: "ajax/productos.ajax.php",
+            type: "POST",
+            data: { 'accion': 1 }, // 1 Listar producto
+            dataType: "json",
+            success: function (respuesta) {
+                //console.log("respuesta primer document ready", respuesta);
+            }
+        })
+
+
+        // CARGA DE CATEGORIAS EN EL SELECT DE REGISTRO DE PRODUCTOS
+        $.ajax({
+            url: "ajax/categorias.ajax.php",
+            cache: false,
+            dataType: "json",
+            success: function (respuesta) {
+                var options = '<option selected value="0">Seleccione una categoria</option>';
+
+                for (let index = 0; index < respuesta.length; index++) {
+                    options += '<option value="' + respuesta[index].id_categoria + '">' + respuesta[index].nombre_categoria + '</option>';
+                }
+
+                $("#selCategoriaReg").html(options);
+            }
+        });
+
 
         // CARGA DEL LISTADO CON EL PLUGIN DATATABLE JS
         table = $("#tbl_productos").DataTable({
@@ -275,9 +309,11 @@
                     className: 'addNewRecord',
                     action: function (e, dt, node, config) {
                         $("#mdlGestionarProducto").modal('show');
+                        accion = 2;
                     }
                 },
-                'excel', 'print', 'pageLength'
+                'excel',
+                'print', 'pageLength'
             ],
             pageLength: [5, 10, 15, 30, 50, 100],
             pageLength: 10,
@@ -290,6 +326,7 @@
 
             },
             responsive: {
+                iptPrecioVentaReg,
                 details: {
                     type: 'column'
                 }
@@ -401,9 +438,134 @@
 
         })
 
+        // Limpiar campos al cancelar modal de registro de productos
+        $("#btnCancelarRegistro, #btnCerrarModal").on("click", function () {
+            console.log("CodigoReg antes:", $("#iptCodigoReg").val());
+            $("#iptCodigoReg").val("");
+
+            console.log("selCategoriaReg antes:", $("#selCategoriaReg").val());
+            $("#selCategoriaReg").val("0");
+
+            console.log("DescripcionReg antes:", $("#iptDescripcionReg").val());
+            $("#iptDescripcionReg").val("");
+
+            $("#iptPrecioCompraReg").val("");
+
+            $("#iptPrecioVentaReg").val("");
+
+            $("#iptUtilidadReg").val("");
+
+            $("#iptStockReg").val("");
+
+            $("#iptMinimoStockReg").val("");
+
+
+            $("#validate_codigo, #validate_categoria, #validate_descripcion, #validate_precio_compra, #validate_precio_venta, #validate_stock, #validate_min_stock").css("display", "none");
+
+        });
+
+
+        // EVENTO PARA CALCULAR UTILIDAD
+
+        $("#iptPrecioCompraReg, #iptPrecioVentaReg").keyup(function () {
+            calcularUtilidad()
+
+        });
+
+        $("#iptPrecioCompraReg, #iptPrecioVentaReg").change(function () {
+            calcularUtilidad()
+
+        });
+
+
     }
     )
 
+    function calcularUtilidad() {
+        var iptPrecioCompraReg = $("#iptPrecioCompraReg").val();
+        var iptPrecioVentaReg = $("#iptPrecioVentaReg").val();
+        console.log("iptPrecioCompraReg", iptPrecioCompraReg);
+        console.log("iptPrecioVentaReg", iptPrecioVentaReg);
+        var Utilidad = iptPrecioVentaReg - iptPrecioCompraReg;
+        console.log("Utilidad", Utilidad);
+        $("#iptUtilidadReg").val(Utilidad.toFixed(2));
+
+    }
+
+    function formSubmitClick() {
+        // validar ingreso de campos o inputs
+
+        Swal.fire({
+            title: "Esta seguro que desea agregar el producto",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar',
+
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var datos = new FormData();
+                datos.append("accion", accion);
+                datos.append("codigo_producto", $("#iptCodigoReg").val());
+                datos.append("id_categoria_producto", $("#selCategoriaReg").val());
+                datos.append("descripcion_producto", $("#iptDescripcionReg").val());
+                datos.append("precio_compra_producto", $("#iptPrecioCompraReg").val());
+                datos.append("precio_venta_producto", $("#iptPrecioVentaReg").val());
+                datos.append("utilidad", $("#iptUtilidadReg").val());
+                datos.append("stock_producto", $("#iptStockReg").val());
+                datos.append("minimo_stock_producto", $("#iptMinimoStockReg").val());
+                datos.append("ventas_producto", 0);
+
+
+
+
+
+
+                // AJAX para registrar producto
+                $.ajax({
+                    url: "ajax/productos.ajax.php",
+                    type: "POST",
+                    data: datos,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function (respuesta) {
+                        console.log("respuesta", respuesta);
+                        if (respuesta == "ok") {
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Producto registrado correctamente'
+                            })
+
+                            table.ajax.reload();
+                            $("#mdlGestionarProducto").modal('hide');
+                            $("#iptCodigoReg").val("");
+                            $("#selCategoriaReg").val("0");
+                            $("#iptDescripcionReg").val("");
+                            $("#iptPrecioCompraReg").val("");
+                            $("#iptPrecioVentaReg").val("");
+                            $("#iptUtilidadReg").val("");
+                            $("#iptStockReg").val("");
+                            $("#iptMinimoStockReg").val("");
+
+
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Error al registrar el producto'
+                            })
+                        }
+                    }
+                })
+            }
+
+        })
+
+
+    }
 
 
 </script>

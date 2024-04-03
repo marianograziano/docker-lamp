@@ -1,0 +1,9 @@
+[2024-04-03 13:39:37] Codigo producto: 123 Id categoria: 12 Descripcion: Prueba 1020 Precio compra: 10020 Precio venta: 101010 Utilidad: 90990.00 Stock: 1010 Minimo stock: 1010
+[2024-04-03 13:40:53] Codigo producto: 99999 Id categoria: 10 Descripcion: Aceite Baratija Precio compra: 1500 Precio venta: 1200 Utilidad: -300.00 Stock: 2500 Minimo stock: 2500
+[2024-04-03 13:40:53] Resultado: ok
+[2024-04-03 13:53:48] Codigo producto: 99999 Id categoria: 12 Descripcion: Prueba 1234 Precio compra: 1020 Precio venta: 100 Utilidad: -920.00 Stock: 111 Minimo stock: 1111
+[2024-04-03 13:53:48] Resultado: ok
+[2024-04-03 14:17:30] Codigo producto: 9871 Id categoria: 5 Descripcion: 111111 Precio compra: 12222 Precio venta: 222222 Utilidad: 210000.00 Stock: 123 Minimo stock: 123
+[2024-04-03 14:17:30] Resultado: ok
+[2024-04-03 14:19:33] Codigo producto: 1500 Id categoria: 16 Descripcion: Prueba Precio compra: 1850 Precio venta: 2500 Utilidad: 650.00 Stock: 100 Minimo stock: 125
+[2024-04-03 14:19:33] Resultado: ok
