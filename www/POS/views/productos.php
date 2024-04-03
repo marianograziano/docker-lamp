@@ -113,142 +113,140 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <!-- Columna para registro de codigo de barras -->
-                    <div class="col-lg-6">
-                        <div class="form-group mb-2">
-                            <label class="" for="iptCodigoReg">
-                                <span class="small">Codigo de barras</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" class="form-control form-control-sm" name="iptCodigoReg"
-                                id="iptCodigoReg" placeholder="Codigo de barras" required>
-                            <span id="validate_codigo" class="text-danger smal fst-italic" style="display: none;">Debe
-                                ingresar el codigo de barras</span>
+
+                <form class="needs-validation" novalidate>
+                    <div class="row">
+                        <!-- Columna para registro de codigo de barras -->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptCodigoReg">
+                                    <span class="small">Codigo de barras</span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control form-control-sm" name="iptCodigoReg"
+                                    id="iptCodigoReg" placeholder="Codigo de barras" required>
+                                <div class="invalid-feedback">Ingrese el codigo de barras</div>
+
+                            </div>
                         </div>
-                    </div>
-                    <!-- Columna para registro de categoria de producto -->
-                    <div class="col-lg-6">
-                        <div class="form-group mb-2">
-                            <label class="" for="selCategoriaReg">
-                                <i class="fas fa-dumpster fs-6"></i>
-                                <span class="small">Categoria</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-select form-select-sm" arial-label=".form-select-sm example"
-                                id="selCategoriaReg">
-
-                                <span id="validate_categoria" class="text-danger smal fst-italic"
-                                    style="display: none;">Debe
-                                    ingresar la categoria</span>
-                            </select>
+                        <!-- Columna para registro de categoria de producto -->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label class="" for="selCategoriaReg">
+                                    <i class="fas fa-dumpster fs-6"></i>
+                                    <span class="small">Categoria</span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select form-select-sm" arial-label=".form-select-sm example"
+                                    id="selCategoriaReg" required>
+                                </select>
+                                <div class="invalid-feedback">Seleccione una categoria</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Columna para registro de Descripcion -->
+                        <!-- Columna para registro de Descripcion -->
 
-                    <div class="col-12 col-lg-12">
-                        <div class="form-group mb-2">
-                            <label class="" for="iptDescripcionReg">
-                                <i class="fas fa-file-signature fs-6"></i>
-                                <span class="small">Descripción</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" class="form-control form-control-sm" name="iptDescripcionReg"
-                                id="iptDescripcionReg" placeholder="Descripción" required>
-                            <span id="validate_descripcion" class="text-danger smal fst-italic"
-                                style="display: none;">Debe
-                                ingresar la descripcion</span>
+                        <div class="col-12 col-lg-12">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptDescripcionReg">
+                                    <i class="fas fa-file-signature fs-6"></i>
+                                    <span class="small">Descripción</span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control form-control-sm" name="iptDescripcionReg"
+                                    id="iptDescripcionReg" placeholder="Descripción" required>
+                                    <div class="invalid-feedback">Ingrese la descripción</div>
+
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Columna para registro de precio de compra -->
-                    <div class="col-lg-4">
-                        <div class="form-group mb-2">
-                            <label class="" for="iptPrecioCompraReg">
-                                <i class="fas fa-money-bill-wave fs-6"></i>
-                                <span class="small">Precio de Compra</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="number" class="form-control form-control-sm"
-                                name="iptPrecioCompraReg" id="iptPrecioCompraReg" placeholder="Precio de Compra"
-                                required>
-                            <span id="validate_precio_compra" class="text-danger smal fst-italic"
-                                style="display: none;">Debe
-                                ingresar el precio de compra
-                            </span>
+                        <!-- Columna para registro de precio de compra -->
+                        <div class="col-lg-4">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptPrecioCompraReg">
+                                    <i class="fas fa-money-bill-wave fs-6"></i>
+                                    <span class="small">Precio de Compra</span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="number" class="form-control form-control-sm" name="iptPrecioCompraReg"
+                                    id="iptPrecioCompraReg" placeholder="Precio de Compra" required>
+                                    <div class="invalid-feedback">Ingrese el precio de compra del producto</div>
+
+
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Columna para registro de precio de venta -->
-                    <div class="col-lg-4">
-                        <div class="form-group mb-2">
-                            <label class="" for="iptPrecioVentaReg">
-                                <i class="fas fa-money-bill-wave fs-6"></i>
-                                <span class="small">Precio de Venta</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="number" class="form-control form-control-sm" name="iptPrecioVentaReg"
-                                id="iptPrecioVentaReg" placeholder="Precio de Venta" required>
-                            <span id="validate_precio_venta" class="text-danger smal fst-italic"
-                                style="display: none;">Debe
-                                ingresar el precio de venta
-                            </span>
+                        <!-- Columna para registro de precio de venta -->
+                        <div class="col-lg-4">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptPrecioVentaReg">
+                                    <i class="fas fa-money-bill-wave fs-6"></i>
+                                    <span class="small">Precio de Venta</span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="number" class="form-control form-control-sm" name="iptPrecioVentaReg"
+                                    id="iptPrecioVentaReg" placeholder="Precio de Venta" required>
+                                    <div class="invalid-feedback">Ingrese el precio de venta del producto</div>
+
+
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Columna para el calculo de Utilidad-->
-                    <div class="col-lg-4">
-                        <div class="form-group mb-2">
-                            <label class="" for="iptUtilidadReg">
-                                <i class="fas fa-money-bill-wave fs-6"></i>
-                                <span class="small">Utilidad</span>
+                        <!-- Columna para el calculo de Utilidad-->
+                        <div class="col-lg-4">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptUtilidadReg">
+                                    <i class="fas fa-money-bill-wave fs-6"></i>
+                                    <span class="small">Utilidad</span>
 
-                            </label>
-                            <input type="number" class="form-control form-control-sm" name="iptUtilidadReg"
-                                id="iptUtilidadReg" placeholder="Utilidad" disabled>
+                                </label>
+                                <input type="number" class="form-control form-control-sm" name="iptUtilidadReg"
+                                    id="iptUtilidadReg" placeholder="Utilidad" disabled>
 
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Columna para el ingreso de Stock-->
-                    <div class="col-lg-6">
-                        <div class="form-group mb-2">
-                            <label class="" for="iptStockReg">
-                                <i class="fas fa-plus-circle fs-6"></i>
-                                <span class="small">Stock</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="number" class="form-control form-control-sm" name="iptStockReg"
-                                id="iptStockReg" placeholder="Stock" required>
-                            <span id="validate_stock" class="text-danger smal fst-italic" style="display: none;">Debe
-                                ingresar la cantidad de stock </span>
+                        <!-- Columna para el ingreso de Stock-->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptStockReg">
+                                    <i class="fas fa-plus-circle fs-6"></i>
+                                    <span class="small">Stock</span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="number" class="form-control form-control-sm" name="iptStockReg"
+                                    id="iptStockReg" placeholder="Stock" required>
+                                    <div class="invalid-feedback">Ingrese el stock del producto</div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Columna para el ingreso de Stock Minimo-->
-                    <div class="col-lg-6">
-                        <div class="form-group mb-2">
-                            <label class="" for="iptMinimoStockReg">
-                                <i class="fas fa-minus-circle fs-6"></i>
-                                <span class="small">Minimo Stock</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="number" class="form-control form-control-sm" name="iptMinimoStockReg"
-                                id="iptMinimoStockReg" placeholder="Minimo Stock" required>
-                            <span id="validate_min_stock" class="text-danger smal fst-italic"
-                                style="display: none;">Debe
-                                ingresar la cantidad minima de stock </span>
+                        <!-- Columna para el ingreso de Stock Minimo-->
+                        <div class="col-lg-6">
+                            <div class="form-group mb-2">
+                                <label class="" for="iptMinimoStockReg">
+                                    <i class="fas fa-minus-circle fs-6"></i>
+                                    <span class="small">Minimo Stock</span>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="number" class="form-control form-control-sm" name="iptMinimoStockReg"
+                                    id="iptMinimoStockReg" placeholder="Minimo Stock" required>
+                                    <div class="invalid-feedback">Ingrese el stock minimo del producto</div>
+                                
+                                </div>
                         </div>
+
+
+                        <button type="button" class="btn btn-primary mt-3 mx-2" style="width:170px;"
+                            id="btnGuardarProducto">
+                            Guardar
+                        </button>
+
+                        <button type="button" class="btn btn-danger mt-3 mx-2" style="width:170px;"
+                            id="btnCancelarRegistro" data-dismiss="modal">Cancelar</button>
+
+
+
                     </div>
-                    <button type="button" class="btn btn-primary mt-3 mx-2" style="width:170px;" id="btnGuardarProducto"
-                        onclick="formSubmitClick()">Guardar</button>
-
-                    <button type="button" class="btn btn-danger mt-3 mx-2" style="width:170px;" id="btnCancelarRegistro"
-                        data-dismiss="modal">Cancelar</button>
-
-
-
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -257,14 +255,14 @@
 
 <script>
 
-var accion;
-var table;
-var Toast = Swal.mixin({
-     toast: true,
-     position: 'top',
-     showConfirmButton: false,
-     timer: 3000,
-})
+    var accion;
+    var table;
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+    })
 
 
     $(document).ready(function () {
@@ -288,7 +286,7 @@ var Toast = Swal.mixin({
             cache: false,
             dataType: "json",
             success: function (respuesta) {
-                var options = '<option selected value="0">Seleccione una categoria</option>';
+                var options = '<option selected value="">Seleccione una categoria</option>';
 
                 for (let index = 0; index < respuesta.length; index++) {
                     options += '<option value="' + respuesta[index].id_categoria + '">' + respuesta[index].nombre_categoria + '</option>';
@@ -418,7 +416,7 @@ var Toast = Swal.mixin({
                 var precioHasta = parseFloat($("#iptPrecioVentaHasta").val());
                 var col_venta = parseFloat(data[7]) || 0;
 
-                console.log(precioDesde, precioHasta);
+               // console.log(precioDesde, precioHasta);
 
                 if ((isNaN(precioDesde) && isNaN(precioHasta)) ||
                     (isNaN(precioDesde) && col_venta <= precioHasta) ||
@@ -440,7 +438,7 @@ var Toast = Swal.mixin({
 
         // Limpiar campos al cancelar modal de registro de productos
         $("#btnCancelarRegistro, #btnCerrarModal").on("click", function () {
-            console.log("CodigoReg antes:", $("#iptCodigoReg").val());
+          //  console.log("CodigoReg antes:", $("#iptCodigoReg").val());
             $("#iptCodigoReg").val("");
 
             console.log("selCategoriaReg antes:", $("#selCategoriaReg").val());
@@ -484,15 +482,34 @@ var Toast = Swal.mixin({
     function calcularUtilidad() {
         var iptPrecioCompraReg = $("#iptPrecioCompraReg").val();
         var iptPrecioVentaReg = $("#iptPrecioVentaReg").val();
-        console.log("iptPrecioCompraReg", iptPrecioCompraReg);
-        console.log("iptPrecioVentaReg", iptPrecioVentaReg);
+
         var Utilidad = iptPrecioVentaReg - iptPrecioCompraReg;
-        console.log("Utilidad", Utilidad);
         $("#iptUtilidadReg").val(Utilidad.toFixed(2));
 
     }
 
-    function formSubmitClick() {
+
+document.getElementById('btnGuardarProducto').addEventListener('click', function () {
+
+    var forms = document.getElementsByClassName('needs-validation');
+    var validation = Array.prototype.filter.call(forms, function (form) {
+
+            if (form.checkValidity() === true) {
+                console.log("Listo para registrar el producto");
+                guardarRegistro();
+
+            } else {
+                console.log("Faltan campos por llenar")
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+
+document.getElementById('btnCancelarRegistro').addEventListener('click', function () {
+    $(".needs-validation").removeClass('was-validated');
+    });
+
+    function guardarRegistro() {
         // validar ingreso de campos o inputs
 
         Swal.fire({
