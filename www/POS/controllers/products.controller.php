@@ -21,5 +21,15 @@ class ProductsController{
         return $registrarProducto;
     }
 
+    static public function ctrActualizarStock($table, $data, $id, $nameId){
+        $respuesta = ProductsModel::mdlActualizarInfo($table, $data, $id, $nameId);
+        return $respuesta;
+    }
+
+    static public function ctrActualizarProducto($table, $data, $id, $nameId) {
+    $respuesta = ProductsModel::mdlActualizarInfo($table, $data, $id, $nameId);
+    return $respuesta;
+}
+
 
 }

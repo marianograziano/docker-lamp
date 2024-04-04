@@ -9,3 +9,30 @@
 [2024-04-03 14:19:33] Resultado: ok
 [2024-04-03 15:12:07] Codigo producto: 99887766 Id categoria: 20 Descripcion: Prueba Carnes Precio compra: 15000 Precio venta: 18000 Utilidad: 3000.00 Stock: 1000 Minimo stock: 8000
 [2024-04-03 15:12:07] Resultado: ok
+[2024-04-04 10:39:47] Tabla: productos Data: Array Id: 7755139002809 NameId: codigo_producto
+[2024-04-04 10:40:59] Tabla: productos Id: 7755139002809 NameId: codigo_producto
+[2024-04-04 10:40:59] Keycodigo_producto Value: 7755139002809
+[2024-04-04 10:40:59] Keystock_producto Value: 12
+[2024-04-04 10:42:48] Tabla: productos Id: 7755139002809 NameId: codigo_producto
+[2024-04-04 10:42:48] Keycodigo_producto Value: 7755139002809
+[2024-04-04 10:42:48] Keystock_producto Value: 12
+[2024-04-04 10:42:48] set antes de substr: codigo_producto = 7755139002809, stock_producto = 12, 
+[2024-04-04 10:42:48] set despues de substr: codigo_producto = 7755139002809, stock_producto = 12,
+[2024-04-04 10:43:52] Tabla: productos Id: 7755139002809 NameId: codigo_producto
+[2024-04-04 10:43:52] Keycodigo_producto Value: 7755139002809
+[2024-04-04 10:43:52] Keystock_producto Value: 13
+[2024-04-04 10:43:52] set antes de substr: codigo_producto = 7755139002809, stock_producto = 13, 
+[2024-04-04 10:43:52] set despues de substr: codigo_producto = 7755139002809, stock_producto = 13
+[2024-04-04 10:53:21] Tabla: productos Id: 7755139002809 NameId: codigo_producto
+[2024-04-04 10:53:21] Keycodigo_producto Value: 7755139002809
+[2024-04-04 10:53:21] Keystock_producto Value: 23
+[2024-04-04 10:53:21] set antes de substr: codigo_producto = 7755139002809, stock_producto = 23, 
+[2024-04-04 10:53:21] set despues de substr: codigo_producto = 7755139002809, stock_producto = 23
+[2024-04-04 10:53:21] UPDATE productos SET codigo_producto = 7755139002809, stock_producto = 23 WHERE codigo_producto = :codigo_producto
+[2024-04-04 10:53:46] Tabla: productos Id: 7755139002809 NameId: codigo_producto
+[2024-04-04 10:53:46] Keycodigo_producto Value: 7755139002809
+[2024-04-04 10:53:46] Keystock_producto Value: 13
+[2024-04-04 10:53:46] set antes de substr: codigo_producto = 7755139002809, stock_producto = 13, 
+[2024-04-04 10:53:46] set despues de substr: codigo_producto = 7755139002809, stock_producto = 13
+[2024-04-04 10:53:46] UPDATE productos SET codigo_producto = 7755139002809, stock_producto = 13 WHERE codigo_producto = :codigo_producto
+[2024-04-04 12:27:03] Set: id_categoria_producto = :id_categoria_producto, descripcion_producto = :descripcion_producto, precio_compra_producto = :precio_compra_producto, precio_venta_producto = :precio_venta_producto, utilidad = :utilidad, stock_producto = :stock_producto, minimo_stock_producto = :minimo_stock_producto

@@ -2,7 +2,7 @@
 
 require_once "conection.php";
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
+
 
 function logError($mensajeError)
 {
@@ -164,10 +164,10 @@ class ProductsModel
     static public function mdlRegistrarProducto($codigo_producto, $id_categoria_producto, $descripcion_producto, $precio_compra_producto, $precio_venta_producto, $utilidad, $stock_producto, $minimo_stock_producto, $ventas_producto)
     {
         try {
-                $fecha = date('Y-m-d');
-                //$stmt = Conexion::conectar()->prepare('call prc_RegistrarProducto(:codigo_producto, :id_categoria_producto, :descripcion_producto, :precio_compra_producto, :precio_venta_producto, :utilidad, :stock_producto, :minimo_stock_producto, :ventas_producto)');
-                logError("Codigo producto: " . $codigo_producto . " Id categoria: " . $id_categoria_producto . " Descripcion: " . $descripcion_producto . " Precio compra: " . $precio_compra_producto . " Precio venta: " . $precio_venta_producto . " Utilidad: " . $utilidad . " Stock: " . $stock_producto . " Minimo stock: " . $minimo_stock_producto );
-                $stmt = Conexion::conectar()->prepare('INSERT INTO productos(codigo_producto,
+            $fecha = date('Y-m-d');
+            //$stmt = Conexion::conectar()->prepare('call prc_RegistrarProducto(:codigo_producto, :id_categoria_producto, :descripcion_producto, :precio_compra_producto, :precio_venta_producto, :utilidad, :stock_producto, :minimo_stock_producto, :ventas_producto)');
+            logError("Codigo producto: " . $codigo_producto . " Id categoria: " . $id_categoria_producto . " Descripcion: " . $descripcion_producto . " Precio compra: " . $precio_compra_producto . " Precio venta: " . $precio_venta_producto . " Utilidad: " . $utilidad . " Stock: " . $stock_producto . " Minimo stock: " . $minimo_stock_producto);
+            $stmt = Conexion::conectar()->prepare('INSERT INTO productos(codigo_producto,
                 id_categoria_producto,
                 descripcion_producto,
                 precio_compra_producto,
@@ -191,34 +191,54 @@ class ProductsModel
                     :fecha_creacion_producto,
                     :fecha_actualizacion_producto
                 )');
-                $stmt->bindParam(":codigo_producto", $codigo_producto, PDO::PARAM_STR);
-                $stmt->bindParam(":id_categoria_producto", $id_categoria_producto, PDO::PARAM_STR);
-                $stmt->bindParam(":descripcion_producto", $descripcion_producto, PDO::PARAM_STR);
-                $stmt->bindParam(":precio_compra_producto", $precio_compra_producto, PDO::PARAM_STR);
-                $stmt->bindParam(":precio_venta_producto", $precio_venta_producto, PDO::PARAM_STR);
-                $stmt->bindParam(":utilidad", $utilidad, PDO::PARAM_STR);
-                $stmt->bindParam(":stock_producto", $stock_producto, PDO::PARAM_STR);
-                $stmt->bindParam(":minimo_stock_producto", $minimo_stock_producto, PDO::PARAM_STR);
-                $stmt->bindParam(":ventas_producto", $ventas_producto, PDO::PARAM_STR);
-                $stmt->bindParam(":fecha_creacion_producto", $fecha, PDO::PARAM_STR);
-                $stmt->bindParam(":fecha_actualizacion_producto", $fecha, PDO::PARAM_STR);
+            $stmt->bindParam(":codigo_producto", $codigo_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":id_categoria_producto", $id_categoria_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":descripcion_producto", $descripcion_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":precio_compra_producto", $precio_compra_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":precio_venta_producto", $precio_venta_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":utilidad", $utilidad, PDO::PARAM_STR);
+            $stmt->bindParam(":stock_producto", $stock_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":minimo_stock_producto", $minimo_stock_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":ventas_producto", $ventas_producto, PDO::PARAM_STR);
+            $stmt->bindParam(":fecha_creacion_producto", $fecha, PDO::PARAM_STR);
+            $stmt->bindParam(":fecha_actualizacion_producto", $fecha, PDO::PARAM_STR);
 
-                if ($stmt->execute()) {
-                    $resultado =  "ok";
-                } else {
-                    $resultado =  "error";
-                }
+            if ($stmt->execute()) {
+                $resultado = "ok";
+            } else {
+                $resultado = "error";
             }
-                 catch (Exception $e) {  
-                $resultado =  "Excepcion capturada: " . $e->getMessage();
-                }    
-$stmt = null; 
-            logError("Resultado: " . $resultado);
-            return $resultado;
-
+        } catch (Exception $e) {
+            $resultado = "Excepcion capturada: " . $e->getMessage();
         }
- 
+        $stmt = null;
+        logError("Resultado: " . $resultado);
+        return $resultado;
 
-        //return $stmt->fetch();
+    }
+
+    static public function mdlActualizarInfo($table, $data, $id, $nameId) {
+        $setParts = [];
+        foreach ($data as $key => $value) {
+            $setParts[] = "$key = :$key";
+        }
+        $set = implode(', ', $setParts);
+
+        logError("Set: " . $set);
+        $stmt = Conexion::conectar()->prepare("UPDATE $table SET $set WHERE $nameId = :idParam");
     
+        foreach ($data as $key => $value) {
+            $stmt->bindValue(":$key", $value, PDO::PARAM_STR);
+        }
+        $stmt->bindValue(":idParam", $id, PDO::PARAM_INT);
+    
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return Conexion::conectar()->errorInfo();
+        }
+    }
+
+
+
 }
