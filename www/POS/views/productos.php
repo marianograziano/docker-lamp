@@ -55,7 +55,7 @@
                                     <label for="iptPrecioVentaDesde">Precio Venta Desde</label>
                                 </div>
                                 <div style="width: 20%;" class="form-floating mx-1">
-                                    <input type="text" id="iptPrecioVentaHasta" class="form-control" step="0.01" >
+                                    <input type="text" id="iptPrecioVentaHasta" class="form-control" step="0.01">
                                     <label for="iptPrecioVentaHasta">Precio Venta Hasta</label>
                                 </div>
                             </div>
@@ -169,8 +169,7 @@
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="number" class="form-control form-control-sm" name="iptPrecioCompraReg"
-                                    id="iptPrecioCompraReg" placeholder="Precio de Compra" step="0.01"
-                                     required>
+                                    id="iptPrecioCompraReg" placeholder="Precio de Compra" step="0.01" required>
                                 <div class="invalid-feedback">Ingrese el precio de compra del producto</div>
 
 
@@ -596,8 +595,15 @@
 
 
                 });
+                // Click al icono de borrar una de las filas.
 
+                $('#tbl_productos tbody').on('click', '.btnEliminarProducto', function () {
 
+                    accion = 4;
+
+                    var data = table.row($(this).parents('tr')).data();
+                }
+                
 
                 // resetear al cancelar o cerrar. 
 
@@ -719,16 +725,12 @@
                 var validation = Array.prototype.filter.call(forms, function (form) {
 
                     if (form.checkValidity() === true) {
-                        console.log("Listo para registrar el producto");
-                        guardarRegistro();
+                        console.log("accion", accion);
+                        guardarRegistro(accion);
 
                     } else {
                         console.log("Faltan campos por llenar")
-                        console.log("CodigoReg antes:", $("#iptCodigoReg").val());
-                        console.log("selCategoriaReg antes:", $("#selCategoriaReg").val());
-                        console.log("DescripcionReg antes:", $("#iptDescripcionReg").val());
-                        console.log("PrecioCompraReg antes:", $("#iptPrecioCompraReg").val());
-                        console.log("PrecioVentaReg antes:", $("#iptPrecioVentaReg").val());
+
 
                     }
                     form.classList.add('was-validated');
@@ -739,11 +741,22 @@
                 $(".needs-validation").removeClass('was-validated');
             });
 
-            function guardarRegistro() {
+            function guardarRegistro(accion) {
                 // validar ingreso de campos o inputs
+                console.log("accion 2 ", accion)
+                if (accion == 2) {
+                    var titulo_msg = "Esta seguro que desea agregar el producto"
+
+                }
+
+
+                if (accion == 4) {
+                    var titulo_msg = "Esta seguro que desea actualizar el producto"
+
+                }
 
                 Swal.fire({
-                    title: "Esta seguro que desea agregar el producto",
+                    title: titulo_msg,
                     icon: "warning",
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -767,16 +780,16 @@
 
 
 
-if (accion == 2) {
-    var titulo_msg = "Producto registrado correctamente"
+                        if (accion == 2) {
+                            var titulo_msg = "Producto registrado correctamente"
 
-}
+                        }
 
 
-if (accion == 4) {
-    var titulo_msg = "Producto registrado correctamente"
+                        if (accion == 4) {
+                            var titulo_msg = "Producto actualizado correctamente"
 
-}
+                        }
                         // AJAX para registrar producto
                         $.ajax({
                             url: "ajax/productos.ajax.php",
